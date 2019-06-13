@@ -1,12 +1,13 @@
 {
-  "$schema": "https://dev.office.com/json-schemas/spfx-build/package-solution.schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/package-solution.schema.json",
   "solution": {
-    "name": "React Content Query",
-    "id": "00406271-0276-406f-9666-512623eb6709",
-    "version": "1.0.11.0"
-    
+    "name": "contentquery-client-side-solution",
+    "id": "01d98caa-6066-42e3-ae04-0836e3583bcc",
+    "version": "1.0.0.0",
+    "includeClientSideAssets": true,
+    "isDomainIsolated": false
   },
   "paths": {
-    "zippedPackage": "solution/react-content-query-webpart.sppkg"
+    "zippedPackage": "solution/contentquery.sppkg"
   }
 }
