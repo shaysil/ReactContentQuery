@@ -1,10 +1,10 @@
 /* tslint:disable */
-require('./QueryFilter.module.css');
+require("./QueryFilter.module.css");
 const styles = {
-  queryFilter: 'queryFilter_8fa6a849',
-  disabled: 'disabled_8fa6a849',
-  paddingContainer: 'paddingContainer_8fa6a849',
-  peoplePicker: 'peoplePicker_8fa6a849',
+  queryFilter: 'queryFilter_e0701b9e',
+  disabled: 'disabled_e0701b9e',
+  paddingContainer: 'paddingContainer_e0701b9e',
+  peoplePicker: 'peoplePicker_e0701b9e',
 };
 
 export default styles;

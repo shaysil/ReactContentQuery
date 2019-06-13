@@ -1,4 +1,4 @@
-declare interface IContentQueryStrings {
+declare interface IContentQueryWebPartStrings {
   SourcePageDescription: string;
   QueryPageDescription: string;
   DisplayPageDescription: string;
@@ -40,10 +40,11 @@ declare interface IContentQueryStrings {
   queryFilterPanelStrings: any;
   viewFieldsChecklistStrings: any;
   templateTextStrings: any;
+  SelectedtemplateStrings:string;
   contentQueryStrings: any;
 }
 
-declare module 'contentQueryStrings' {
-  const strings: IContentQueryStrings;
+declare module 'ContentQueryWebPartStrings' {
+  const strings: IContentQueryWebPartStrings;
   export = strings;
 }

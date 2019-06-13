@@ -1,9 +1,9 @@
 /* tslint:disable */
-require('./ContentQuery.module.css');
+require("./ContentQuery.module.css");
 const styles = {
-  cqwp: 'cqwp_e30d9f38',
-  cqwpValidations: 'cqwpValidations_e30d9f38',
-  cqwpError: 'cqwpError_e30d9f38',
+  cqwp: 'cqwp_ec7e067a',
+  cqwpValidations: 'cqwpValidations_ec7e067a',
+  cqwpError: 'cqwpError_ec7e067a',
 };
 
 export default styles;

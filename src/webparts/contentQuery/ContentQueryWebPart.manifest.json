@@ -1,6 +1,6 @@
 {
-  "$schema": "https://dev.office.com/json-schemas/spfx/client-side-web-part-manifest.schema.json",
-  "id": "ac515af1-4490-4c7b-8191-d49b41b26c5e",
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx/client-side-web-part-manifest.schema.json",
+  "id": "89289568-94c4-447c-af82-70f75d0dacf4",
   "alias": "ContentQueryWebPart",
   "componentType": "WebPart",
 
@@ -12,18 +12,16 @@
   // Components that allow authors to embed arbitrary script code should set this to true.
   // https://support.office.com/en-us/article/Turn-scripting-capabilities-on-or-off-1f2c515f-5d7e-448a-9fd7-835da935584f
   "requiresCustomScript": false,
+  "supportedHosts": ["SharePointWebPart"],
 
   "preconfiguredEntries": [{
-    "groupId": "46edf08f-95c7-4ca7-9146-6471f9f471be", // Other
-    "group": { "default": "SPP Technologies" },
-    "title": { "default": "React Content Query WebPart" },
-    "description": {
-      "default": "A react content by query WebPart for querying items within a site and easily displaying them using a simple yet powerfull HandleBars templating engine.",
-      "fr-FR": "Une composante React permettant d'effectuer des requêtes sur les items et de facilement afficher les résultat à l'aide de gabarits HandleBars fournit par l'utilisateur"
-    },
-    "officeFabricIconFontName": "BulletedList",
+    "groupId": "5c03119e-3074-46fd-976b-c60198311f70", // Other
+    "group": { "default": "Other" },
+    "title": { "default": "Content Query" },
+    "description": { "default": "Content Query description" },
+    "officeFabricIconFontName": "Airplane",
     "properties": {
-      "description": "React Content Query WebPart"
+      "description": "Content Query"
     }
   }]
 }

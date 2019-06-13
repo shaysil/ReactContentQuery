@@ -15,6 +15,7 @@ export class ContentQueryConstants {
     public static readonly propertyFilters                          = "filters";
     public static readonly propertyViewFields                       = "viewFields";
     public static readonly propertyTemplateText                     = "templateText";
+    public static readonly propertySelectedtemplate                 = "Selectedtemplate"
     public static readonly propertyTemplateUrl                      = "templateUrl";
     public static readonly propertyhasDefaultTemplateBeenUpdated    = "hasDefaultTemplateBeenUpdated";
     public static readonly propertyExternalScripts                  = "externalScripts";

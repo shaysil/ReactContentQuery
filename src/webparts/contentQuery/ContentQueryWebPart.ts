@@ -1,8 +1,8 @@
 import * as React                                                                   from 'react';
 import * as ReactDom                                                                from 'react-dom';
-import * as strings                                                                 from 'contentQueryStrings';
+import * as strings                                                                 from 'ContentQueryWebPartStrings';
 import { Version, Text, Log }                                                       from '@microsoft/sp-core-library';
-import { BaseClientSideWebPart, IPropertyPaneConfiguration, IPropertyPaneField }    from '@microsoft/sp-webpart-base';
+import { BaseClientSideWebPart, IPropertyPaneConfiguration, IPropertyPaneField, IPropertyPaneChoiceGroupOption }    from '@microsoft/sp-webpart-base';
 import { PropertyPaneTextField, IPropertyPaneTextFieldProps }                       from '@microsoft/sp-webpart-base';
 import { PropertyPaneChoiceGroup, IPropertyPaneChoiceGroupProps }                   from '@microsoft/sp-webpart-base';
 import { PropertyPaneToggle, IPropertyPaneToggleProps }                             from '@microsoft/sp-webpart-base';
@@ -12,7 +12,7 @@ import ContentQuery                                                             
 import { IContentQueryProps }                                                       from './components/IContentQueryProps';
 import { IQuerySettings }                                                           from './components/IQuerySettings';
 import { IContentQueryTemplateContext }                                             from './components/IContentQueryTemplateContext';
-import { IContentQueryWebPartProps }                                                from './IContentQueryWebPartProps';
+import { IContentQueryWebPartProps }                                                from '../IContentQueryWebPartProps';
 import { PropertyPaneAsyncDropdown }                                                from '../../controls/PropertyPaneAsyncDropdown/PropertyPaneAsyncDropdown';
 import { PropertyPaneQueryFilterPanel }                                             from '../../controls/PropertyPaneQueryFilterPanel/PropertyPaneQueryFilterPanel';
 import { PropertyPaneAsyncChecklist }                                               from '../../controls/PropertyPaneAsyncChecklist/PropertyPaneAsyncChecklist';
@@ -97,6 +97,7 @@ export default class ContentQueryWebPart extends BaseClientSideWebPart<IContentQ
         siteUrl: this.properties.siteUrl,
         querySettings: querySettings,
         templateText: this.properties.templateText,
+        Selectedtemplate:this.properties.Selectedtemplate,
         templateUrl: this.properties.templateUrl,
         wpContext: this.context,
         externalScripts: this.properties.externalScripts ? this.properties.externalScripts.split('\n').filter((script) => { return (script && script.trim() != ''); }) : null,
@@ -107,6 +108,31 @@ export default class ContentQueryWebPart extends BaseClientSideWebPart<IContentQ
     ReactDom.render(element, this.domElement);
   }
   
+  /***************************************************************************
+   * ChoiceGroup with icon options 
+   ***************************************************************************/
+  private _choicGroup: IPropertyPaneChoiceGroupOption[];
+  private get choiceOptions(): IPropertyPaneChoiceGroupOption[] {
+      var options: Array<IPropertyPaneChoiceGroupOption> = new Array<IPropertyPaneChoiceGroupOption>();
+
+      let imgCarousel: string = "https://spoprod-a.akamaihd.net/files/sp-client-prod_2017-08-04.008/image_choicegroup_carousel_82b63fce.png";
+      let imgTiles: string = "https://spoprod-a.akamaihd.net/files/sp-client-prod_2017-08-04.008/image_choicegroup_grid_0503466b.png";
+      let imgList:string = 'https://spoprod-a.akamaihd.net/files/sp-client-prod_2017-08-04.008/image_choicegroup_list_f5a84202.png';
+
+      options.push({ checked: true, imageSrc: imgCarousel, key: "Carousel", text: "Carousel", selectedImageSrc: imgCarousel });
+     //  options.push({ checked: false, imageSrc: imgTiles, key: "Grid", text: "Grid", selectedImageSrc: imgTiles });
+     //  options.push({ checked: false, imageSrc: imgList, key: "List", text: "List", selectedImageSrc: imgList });
+      options.push({iconProps:{officeFabricIconFontName: 'List'}, text: "List",key: "List"});
+      options.push({iconProps:{officeFabricIconFontName: 'GridViewMedium'}, text: "Grid",key: "Grid"});
+      options.push({iconProps:{officeFabricIconFontName: 'ContactCard'}, text: "Contact Card",key: "ContactCard"});
+      options.push({iconProps:{officeFabricIconFontName: 'Table'}, text: "Table",key: "Table"});
+      
+      this._choicGroup = options;
+
+    return this._choicGroup;
+  }
+
+
 
   /***************************************************************************
    * Loads the toolpart configuration
@@ -279,8 +305,12 @@ export default class ContentQueryWebPart extends BaseClientSideWebPart<IContentQ
               groupName: strings.DisplayGroupName,
               groupFields: [
                 this.viewFieldsChecklist,
+                PropertyPaneChoiceGroup('Selectedtemplate', {
+                  label: 'Layout',
+                  options: this.choiceOptions
+                }),
                 this.templateTextDialog,
-                this.templateUrlTextField
+                this.templateUrlTextField,
               ]
             }
           ]

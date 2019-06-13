@@ -1,6 +1,6 @@
 import * as React                       from 'react';
 import * as Handlebars                  from "handlebars";
-import * as strings                     from 'contentQueryStrings';
+import * as strings                     from 'ContentQueryWebPartStrings';
 import { Checkbox, Spinner }            from 'office-ui-fabric-react';
 import { isEmpty }                      from '@microsoft/sp-lodash-subset';
 import { Text, Log }                    from '@microsoft/sp-core-library';
@@ -140,14 +140,17 @@ export default class ContentQuery extends React.Component<IContentQueryProps, IC
 
 
   /*************************************************************************************
-   * Loads the template from url if available, otherwise returns the inline template
+   * Load spesific template if selected or the template from url if available, otherwise returns the inline template
    *************************************************************************************/
   private loadTemplate(): Promise<string> {
     // Resolves the template content if no template url
-    if(isEmpty(this.props.templateUrl)) {
+    if(isEmpty(this.props.Selectedtemplate)) {
+      return Promise.resolve(this.props.templateUrl);
+    }
+    else if(isEmpty(this.props.templateUrl)) {
         return Promise.resolve(this.props.templateText);
     }
-
+  
     return new Promise<string>((resolve,reject) => {
         this.props.onLoadTemplate(this.props.templateUrl).then((templateContent: string) => {
           resolve(templateContent);
@@ -157,6 +160,7 @@ export default class ContentQuery extends React.Component<IContentQueryProps, IC
         });
     });
   }
+  
 
 
   /*************************************************************************************
@@ -236,7 +240,7 @@ export default class ContentQuery extends React.Component<IContentQueryProps, IC
            !isEmpty(this.props.querySettings.webUrl) && 
            !isEmpty(this.props.querySettings.listId) && 
            !isEmpty(this.props.querySettings.viewFields) && 
-           (!isEmpty(this.props.templateUrl) || !isEmpty(this.props.templateText));
+           (!isEmpty(this.props.Selectedtemplate) || !isEmpty(this.props.templateUrl) || !isEmpty(this.props.templateText));
   }
 
 
@@ -255,6 +259,7 @@ export default class ContentQuery extends React.Component<IContentQueryProps, IC
   public componentDidMount(): void {
     this.loadExternalScriptsSequentially(this.props.externalScripts).then(() => {
       this.loadTemplateContext();
+      <div>aa</div>
     });
   }
 
@@ -266,6 +271,7 @@ export default class ContentQuery extends React.Component<IContentQueryProps, IC
     if(prevProps.stateKey !== this.props.stateKey) {
       this.loadExternalScriptsSequentially(this.props.externalScripts).then(() => {
         this.loadTemplateContext();
+        <div>bbb</div>
       });
     }
   }
@@ -296,13 +302,15 @@ export default class ContentQuery extends React.Component<IContentQueryProps, IC
               <Checkbox label={strings.WebUrlFieldLabel} checked={!isEmpty(this.props.querySettings.webUrl)} />
               <Checkbox label={strings.ListTitleFieldLabel} checked={!isEmpty(this.props.querySettings.listId)} />
               <Checkbox label={strings.viewFieldsChecklistStrings.label} checked={!isEmpty(this.props.querySettings.viewFields)} />
-              <Checkbox label={strings.templateTextStrings.dialogButtonLabel + " / " + strings.TemplateUrlFieldLabel} checked={(!isEmpty(this.props.templateUrl) || !isEmpty(this.props.templateText))} />
+              <Checkbox label={strings.templateTextStrings.dialogButtonLabel + " / " + strings.TemplateUrlFieldLabel} checked={(!isEmpty(this.props.Selectedtemplate)||!isEmpty(this.props.templateUrl) || !isEmpty(this.props.templateText))} />
           </div>
         }
 
         {/* Shows the query results once loaded */}
         { mandatoryFieldsConfigured && !this.state.loading && !this.state.error &&
-          <div dangerouslySetInnerHTML={ this.createMarkup(this.state.processedTemplateResult) }></div>
+          <div dangerouslySetInnerHTML={ this.createMarkup(this.state.processedTemplateResult) }>
+          <div>12312312</div>
+          </div>
         }
 
       </div>

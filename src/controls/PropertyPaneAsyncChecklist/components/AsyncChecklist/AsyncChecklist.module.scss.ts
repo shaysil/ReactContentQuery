@@ -1,10 +1,10 @@
 /* tslint:disable */
-require('./AsyncChecklist.module.css');
+require("./AsyncChecklist.module.css");
 const styles = {
-  checklist: 'checklist_c4dd315a',
-  checklistItems: 'checklistItems_c4dd315a',
-  checklistPadding: 'checklistPadding_c4dd315a',
-  checklistItem: 'checklistItem_c4dd315a',
+  checklist: 'checklist_883c0329',
+  checklistItems: 'checklistItems_883c0329',
+  checklistPadding: 'checklistPadding_883c0329',
+  checklistItem: 'checklistItem_883c0329',
 };
 
 export default styles;

@@ -1,7 +1,7 @@
 /* tslint:disable */
-require('./TextDialog.module.css');
+require("./TextDialog.module.css");
 const styles = {
-  textDialog: 'textDialog_cffd62c8',
+  textDialog: 'textDialog_670ec41a',
 };
 
 export default styles;
